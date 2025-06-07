@@ -1,6 +1,4 @@
 #include <Windows.h>
-
-#define RBH_DEBUGPRINT true
 #include "RedoBlHooks.hpp"
 #include "torque.hpp"
 
@@ -8,7 +6,7 @@ typedef unsigned int U32;
 typedef signed int S32;
 typedef float F32;
 
-const U32 gIdDictionary_hashTableSize = 1<<19; // 1 << 19
+const U32 gIdDictionary_hashTableSize = 1 << 19; // 1 << 19
 
 
 #define gId_patchInt(offset, target, text) \
@@ -35,7 +33,7 @@ bool init()
 
 	ADDR BlScanHex(initRoot_gIdDictionary_memset, "B9 00 10 00 00 33 C0");
 	rbh_PatchInt(initRoot_gIdDictionary_memset + 1, gIdDictionary_hashTableSize);
-	
+
 
 	ADDR gId_patchInt(1, sub_44D290_loc_44D2D0, "25 FF 0F 00 00 8B 04 81");
 	ADDR gId_patchInt(1, sub_44D290_loc_44D2FE, "25 FF 0F 00 00 8D 0C 81");
@@ -118,7 +116,7 @@ bool init()
 	ADDR BlScanHex(sub4_47BA50, "E8 ? ? ? ? 8B 43 54");
 	ADDR BlScanHex(sub5_47BAA0, "E8 ? ? ? ? 84 C0 74 71");
 	ADDR BlScanHex(sub6_4A5500, "E8 ? ? ? ? 84 C0 74 19 FF 75 F0");
-	
+
 	//relative calls
 	//enjoy magical numbers (maybe there is a less dumb way of doing this)
 	rbh_PatchInt((sub1_4744C0 + 5 + (*(ADDR*)(sub1_4744C0 + 1)) + 10), gIdDictionary_hashTableSize - 1);
@@ -134,6 +132,8 @@ bool init()
 	rbh_PatchInt(Codeblock__Exec_42FD20_loc_431B88 + 2, (gIdDictionary_hashTableSize - 1) * 4);
 	rbh_PatchInt(CodeBlock__exec_42FD20_1DA3 + 2, (gIdDictionary_hashTableSize - 1) * 4);
 	rbh_PatchInt(sub_547740_loc_54776B + 2, (gIdDictionary_hashTableSize - 1) * 4);
+
+	BlPrintf("%s (v%s): init'd", PROJECT_NAME, PROJECT_VERSION);
 
 	return true;
 }
