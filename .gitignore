@@ -1,0 +1,13 @@
+*
+
+!*/
+!README.md
+
+!src/*.cpp
+!src/*.hpp
+!src/*.c
+!src/*.h
+
+!CMakeLists.txt
+
+/out
