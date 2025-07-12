@@ -11,7 +11,3 @@ add_library(fasterSimIdDictionary SHARED
 	src/RedoBlHooks.cpp
 	src/Torque.cpp
 )
-
-target_link_libraries(
-	fasterSimIdDictionary
-)
